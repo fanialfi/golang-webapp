@@ -1,0 +1,19 @@
+ body{
+      background-color: #CF00FF;
+    }
+    .custom{
+      text-align: center;
+      font-size: 2em;
+      font-weight: bold;
+      color: white;
+      line-height: 50vh;
+      transition: 300ms;
+    }
+    .custom:hover{
+      font-size: 3rem;
+      color: aquamarine;
+      cursor: pointer;
+    }
+    .custom:active{
+      color: black;
+    }

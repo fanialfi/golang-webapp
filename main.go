@@ -14,13 +14,13 @@ func main() {
 	http.HandleFunc("/index", handler.HandleIndex)
 	http.HandleFunc("/hello", handler.HandleHello)
 
+	// render html template
+	http.HandleFunc("/", handler.HandleHtmlTemplate)
+
 	// routing static asset
 	http.Handle("/static/",
 		http.StripPrefix("/static", // hanya digunakan untuk membungkus actual handler (StripPrefix berguna untuk menghapus prefix dari endpoint yang di request)
 			http.FileServer(http.Dir("assets")))) // actual handler
-
-	// render html template
-	http.HandleFunc("/", handler.HandleHtmlTemplate)
 
 	var port = ":8080"
 	log.Printf("server start at localhost%s\n", port)
