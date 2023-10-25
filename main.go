@@ -4,29 +4,23 @@ import (
 	"log"
 	"net/http"
 	"time"
+
+	"golang-webapp/handler"
 )
-
-func handleIndex(res http.ResponseWriter, req *http.Request) {
-	message := "Welcome"
-	res.Write([]byte(message))
-}
-
-func handleHello(res http.ResponseWriter, req *http.Request) {
-	message := "Hello World"
-	res.Write([]byte(message))
-}
 
 func main() {
 	// HandleFunc digunakan sebagai routing, parameter pertama adalah route nya, dan kedua adalah handler nya
 	// jika mengakses route yang tidak terdaftar, maka secara otomatis handle route / akan terpanggil
-	http.HandleFunc("/", handleIndex)
-	http.HandleFunc("/index", handleIndex)
-	http.HandleFunc("/hello", handleHello)
+	http.HandleFunc("/index", handler.HandleIndex)
+	http.HandleFunc("/hello", handler.HandleHello)
 
 	// routing static asset
 	http.Handle("/static/",
 		http.StripPrefix("/static", // hanya digunakan untuk membungkus actual handler (StripPrefix berguna untuk menghapus prefix dari endpoint yang di request)
 			http.FileServer(http.Dir("assets")))) // actual handler
+
+	// render html template
+	http.HandleFunc("/", handler.HandleHtmlTemplate)
 
 	var port = ":8080"
 	log.Printf("server start at localhost%s\n", port)
