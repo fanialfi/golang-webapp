@@ -23,6 +23,11 @@ func main() {
 	http.HandleFunc("/index", handleIndex)
 	http.HandleFunc("/hello", handleHello)
 
+	// routing static asset
+	http.Handle("/static/",
+		http.StripPrefix("/static", // hanya digunakan untuk membungkus actual handler (StripPrefix berguna untuk menghapus prefix dari endpoint yang di request)
+			http.FileServer(http.Dir("assets")))) // actual handler
+
 	var port = ":8080"
 	log.Printf("server start at localhost%s\n", port)
 

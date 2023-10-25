@@ -1,3 +1,3 @@
-module golang-webapp-hello-world
+module golang-webapp
 
 go 1.20
