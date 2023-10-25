@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"net/http"
+	"time"
 )
 
 func handleIndex(res http.ResponseWriter, req *http.Request) {
@@ -28,7 +29,17 @@ func main() {
 	// ListenAndServe digunakan untuk membuat sekaligus memulai server baru,
 	// parameter pertama adalah alamat web server, bisa diisi host & port / port saja
 	// parameter kedua merupakan object mux / multiplexer (menggunakan default mux yang disediakan oleh golang, jadi diisi dengan nil)
-	err := http.ListenAndServe(port, nil)
+	// err := http.ListenAndServe(port, nil)
+	// if err != nil {
+	// log.Println("Error :", err.Error())
+	// }
+
+	// kelebihan menggunakan http.Server salah satunya adalah kemampuan untuk mengubah konfigurasi default web server go
+	var server http.Server
+	server.Addr = port
+	server.ReadTimeout = time.Second * 10
+	server.WriteTimeout = time.Second * 10
+	err := server.ListenAndServe()
 	if err != nil {
 		log.Println("Error :", err.Error())
 	}
