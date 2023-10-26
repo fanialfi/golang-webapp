@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"time"
 
-	"golang-webapp/handler"
+	"render-html-template/handler"
 )
 
 func main() {

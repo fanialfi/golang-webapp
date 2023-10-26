@@ -1,0 +1,13 @@
+{{define "index"}} <!-- digunakan untuk mendefinisikan nama template -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {{template "_header"}} <!-- template _header di include kan -->
+</head>
+<body>
+  {{template "_message"}} <!-- sama seperti statement diatas -->
+  <p>Page : Index</p>
+  <p>Welcome {{.nama}}</p>
+</body>
+</html>
+{{end}} <!-- dari pendefinisian nama template sampai statement end, adalah milik template index -->
