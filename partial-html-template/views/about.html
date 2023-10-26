@@ -3,11 +3,27 @@
 <html lang="en">
 <head>
   {{template "_header"}}
+  <style>
+    .container{
+      background-color: #f0f0f0;
+      margin: 20px;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+    }
+    .container:hover{
+      display: none;
+    }
+  </style>
 </head>
 <body>
   {{template "_message"}}
   <p>Page : About</p>
   <p>Welcome {{.nama}}</p>
+  <div class="container">
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam nobis, ipsum ullam excepturi ad incidunt praesentium optio sit doloremque aliquam!</p>
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Soluta architecto sequi eligendi vitae impedit molestiae a modi repellendus illo fugiat eius quibusdam totam aliquam culpa, magni beatae? Modi rem tempore incidunt aliquid debitis odit possimus accusantium molestiae id sapiente placeat corrupti repellendus saepe ex, voluptates recusandae quam a ducimus architecto!</p>
+  </div>
 </body>
 </html>
 {{end}}
