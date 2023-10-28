@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learning html/template Actions</title>
+</head>
+<body>
+  <table>
+    <tr>
+      {{/* contoh bagaimana cara menggunakan actions */}}
+      <td>{{`Nama`}}</td> {{/* string literal */}}
+      <td>: {{.Name}}</td> {{/* variabel yang di lempar dari backend */}}
+    </tr>
+
+    <tr>
+      {{/* action definisi variabel */}}
+      <td>Gender</td>
+      {{$gender := .Gender}} {{/* deklarasi variabel */}}
+      <td style="text-transform: capitalize;">: {{$gender}}</td> {{/* menampilkan variabel sebagai pipeline outpur */}}
+    </tr>
+
+    <tr>
+      {{/* action perulangan */}}
+      <td>Hobies</td>
+      <td>:
+        {{range $index, $elm := .Hobies}}
+          {{$elm}},
+        {{end}}
+      </td>
+    </tr>
+
+    <tr>
+      {{/* action perulangan v2*/}}
+      <td>Hobies</td>
+      <td>:
+        {{/* semua baris code sampai statement {{end}} akan diulangi sebanyak jumplah element */}}
+        {{range $elm := .Hobies}}
+          {{$elm}},
+        {{end}}
+      </td>
+    </tr>
+
+    {{/* mengakses method pada template view */}}
+    <tr>
+      <td>Affiliation</td>
+      <td>: {{.Info.Affiliation}} ({{.Info.GetAffiliationDetailInfo}})</td>
+    </tr>
+
+    {{/* mengganti atau membatasi variabel scope pada suatu block */}}
+    {{with .Info}}
+    <tr>
+      <td>Adderss</td>
+      <td>: {{.Address}}</td>
+    </tr>
+    {{end}}
+
+    {{/* seleksi kondisi / branching template view */}}
+    {{/* keyword actions yang digunakan adalah `if` dan `eq` (equal atau sama dengan) */}}
+    {{if eq .Name "Bruce Wayne"}}
+    <tr>
+      <td colspan="2" style="font-weight: bold;">I'm the Batman</td>
+    </tr>
+    {{end}}
+
+    {{/* seleksi kondisi lebih dari satu / branching lebih dari satu cabang */}}
+    {{if eq .Gender "male"}}
+    <tr>
+      <td colspan="2">Hello I'm <b>Man</b></td>
+    </tr>
+    {{else if eq .Gender "female"}}
+    <tr>
+      <td colspan="2">Hello I'm <b>Woman</b></td>
+    </tr>
+    {{end}}
+
+    {{/* jika seleksi kondisi bersumber dengan variabel bertipe boolean, maka tidak perlu menggunakan keyword eq */}}
+    {{/* jika kondisi yang diinginkan berkebalikan dari nilai variabel, maka gunakan keyword ne (not equal) */}}
+    {{$isTrue := false}}
+    {{if $isTrue}}
+    <tr>
+      <td colspan="2"><code>true bro</code></td>
+    </tr>
+    {{else}}
+    <tr>
+      <td colspan="2"><code>false bro</code></td>
+    </tr>
+    {{end}}
+  </table>
+</body>
+</html>
