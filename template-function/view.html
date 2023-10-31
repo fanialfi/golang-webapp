@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learning html/template function</title>
+</head>
+<body>
+  <p>
+    {{/* beberapa predefine function yang bisa digunakan didalam template */}}
+
+    {{/* function escape html tag menjadi string */}}
+    {{html "<h2>Hello</h2>"}}
+
+    {{/* namaFungsi param1 param2 param3 dst */}}
+  </p>
+  <p>Hello My name is {{.Name}}</p>
+  <p>daftar operator perbandingan yang didukung oleh template view</p>
+  <table border="1" cellspacing="0" cellpadding="5">
+    <thead>
+      <tr>
+        <th>Operator</th>
+        <th>Penjelasan</th>
+        <th>Analogi</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>eq</td>
+        <td><i>equal</i>, sama dengan</td>
+        <td><code>a == b</code></td>
+      </tr>
+      <tr>
+        <td>ne</td>
+        <td><i>not equal</i>, tidak sama dengan</td>
+        <td><code>a != b</code></td>
+      </tr>
+      <tr>
+        <td>lt</td>
+        <td><i>lower than</i>, lebih kecil</td>
+        <td><code>a < b</code></td>
+      </tr>
+      <tr>
+        <td>le</td>
+        <td><i>lower than or equal</i>, lebih kecil sama dengan</td>
+        <td><code>a <= b</code></td>
+      </tr>
+      <tr>
+        <td>gt</td>
+        <td><i>greater than</i>, lebih besar</td>
+        <td><code>a > b</code></td>
+      </tr>
+      <tr>
+        <td>ge</td>
+        <td><i>greater than or equal</i>, lebih besar sama dengan</td>
+        <td><code>a >= b</code></td>
+      </tr>
+    </tbody>
+  </table>
+
+  {{/* pemanggilan method */}}
+  <p>
+    {{.SayHello "Gotham Citizen" "You Are Our Herro!"}}
+  </p>
+
+  {{/* function string */}}
+  <p>
+    {{printf "%s because I'm %s" "You Know Why?" "Batman!"}}
+  </p>
+
+  {{/* function len dan index */}}
+  <p>
+    Batman punya {{len .Friends}} teman, yaitu :
+    {{range $index, $elm := .Friends}}
+    {{$index }} : {{$elm}},
+    {{end}}
+  </p>
+</body>
+</html>
